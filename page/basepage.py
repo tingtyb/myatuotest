@@ -8,12 +8,16 @@ class BasePage:
 
     def __init__(self, driver: WebDriver = None):
         if driver is None:
-            self._driver = webdriver.Chrome()
+            options = webdriver.ChromeOptions()
+            options.add_argument("--disable-blink-features")
+            options.add_argument("--disable-blink-features=AutomationControlled")
+            self._driver = webdriver.Chrome(options=options)
             print('我用到了if')
         else:
             self._driver = driver
             print('我用到了else')
         if self._base_url != '':
             self._driver.get(self._base_url)
+
 
 
